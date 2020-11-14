@@ -88,6 +88,8 @@ $totalRows_Login = mysqli_num_rows($Login);
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" href="images/ZuoHuo_180.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/ZuoHuo_180.png">    
     <script>
         if('serviceWorker' in navigator){
             console.log("Will service worker register?");
