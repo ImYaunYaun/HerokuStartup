@@ -2,6 +2,7 @@
 <?php
 function Query($offset, $limit, $WebName, $search, $moneyS, $moneyE, $orderby, $dict, $userid, $city, $town)
 {
+	header('Access-Control-Allow_Origin: *');
     require_once('Connections/cralwer.php');
 	mysqli_select_db($cralwer , $database_cralwer);
 
@@ -148,6 +149,7 @@ if (isset($_POST['offset']) and isset($_POST['limit'])) {
 
 function Favorate($Link, $userid)
 {
+	header('Access-Control-Allow_Origin: *');
     require_once('Connections/cralwer.php');
     mysqli_select_db($cralwer,$database_cralwer);
 
@@ -166,6 +168,7 @@ function Favorate($Link, $userid)
 }
 
 function register($UserName, $UserAccount, $Image, $UserPwd){
+	header('Access-Control-Allow_Origin: *');
 	require_once('Connections/cralwer.php');
     mysqli_select_db($cralwer,$database_cralwer);
 	$query="SELECT * FROM `user` where (1=1) AND `account`='{$UserAccount}'";

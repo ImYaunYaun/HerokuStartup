@@ -55,7 +55,7 @@ if(extension_loaded('mbstring'))
 }
 
 // Build connection object
-if (isset($_POST['Type']) && $_POST['Type'] == 'MYSQL')
+if (isset($_POST['Type']) && $_POST['Type'] == 'MYSQLi')
 {
 	require("./mysql.php");
 	$oConn = new MySqlConnection(@$_POST['ConnectionString'], @$_POST['Timeout'], @$_POST['Host'], @$_POST['Database'], @$_POST['UserName'], @$_POST['Password']);
