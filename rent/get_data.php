@@ -62,7 +62,7 @@ function Query($offset, $limit, $WebName, $search, $moneyS, $moneyE, $orderby, $
 	$row = mysqli_fetch_assoc($data);
 	do{
 		$query_subscribe = "SELECT COUNT(*) countSubscribe FROM `subscription` WHERE `userid` = '{$userid}' AND `Link` = '{$row['Link']}'";
-		$subscribeCount = mysqli_query($cralwer,$query_subscribe));
+		$subscribeCount = mysqli_query($cralwer,$query_subscribe);
 		$row_subscribeCount=mysqli_fetch_assoc($subscribeCount);
 		$selectedFav = '<img class="favorite" id="' . $row["Link"] . '" src="images/selectedFav.png" width="20px" onClick="Favorate(this,' . $userid . ')">';
 		$favorite = '<img class="favorite" id="' . $row["Link"] . '" src="images/favorite.png" width="20px" onClick="Favorate(this,' . $userid . ')">';
