@@ -32,7 +32,7 @@ if (!function_exists("GetSQLValueString")) {
     function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "")
     {
         $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
-        require_once('Connections/cralwer.php');
+
         $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($cralwer,$theValue) : mysqli_escape_string($cralwer,$theValue);
 
         switch ($theType) {
