@@ -3,8 +3,8 @@
 if (!function_exists("GetSQLValueString")) {
     function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "")
     {
-        $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
-
+        $theValue = @get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+        require_once('Connections/cralwer.php'); 
         $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($cralwer,$theValue) : mysqli_escape_string($cralwer,$theValue);
 
         switch ($theType) {
@@ -66,7 +66,7 @@ if (isset($_POST['account'])) {
     $LoginRS__query = sprintf(
         "SELECT account, password FROM `user` WHERE account=%s AND password=%s",
         GetSQLValueString($loginUsername, "text"),
-        GetSQLValueString($password, "text")
+        @GetSQLValueString($password, "text")
     );
 
     $LoginRS = mysqli_query($cralwer,$LoginRS__query);
