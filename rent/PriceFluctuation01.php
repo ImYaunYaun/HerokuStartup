@@ -6,7 +6,7 @@ function GetSQLValueString($cralwer, $theValue, $theType, $theDefinedValue = "",
 {
   $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
 
-  $theValue = function_exists("mysqli_real_escape_string") ? mysql_reali_escape_string($theValue) : mysqli_escape_string($theValue);
+  $theValue = function_exists("mysqli_real_escape_string") ? mysql_reali_escape_string($cralwer, $theValue) : mysqli_escape_string($cralwer, $theValue);
 
   switch ($theType) {
     case "text":
