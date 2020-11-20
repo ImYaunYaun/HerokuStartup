@@ -161,7 +161,7 @@ function Favorate($Link, $userid)
         mysqli_query( $cralwer,$insert);
 		echo 'Insert';
     } else {
-        $delete = "DELETE FROM `crawler`.`subscription` WHERE `subscription`.`userid` = '{$userid}' AND `subscription`.`Link` = '{$Link}'";
+        $delete = "DELETE FROM `subscription` WHERE `subscription`.`userid` = '{$userid}' AND `subscription`.`Link` = '{$Link}'";
         mysqli_query($cralwer,$delete);
 		echo 'Delete';
     }
@@ -179,7 +179,7 @@ function register($UserName, $UserAccount, $Image, $UserPwd){
 		$mypwd=encryptthis($UserPwd, $key);
 		$myUserName=encryptthis($UserName, $key);
 		$myImage=encryptthis($Image, $key);
-		$insert="INSERT INTO `crawler`.`user` (
+		$insert="INSERT INTO `user` (
 			`account` ,
 			`password` ,
 			`name` ,

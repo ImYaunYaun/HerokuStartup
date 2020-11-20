@@ -65,8 +65,8 @@ if (isset($_POST['account'])) {
 
     $LoginRS__query = sprintf(
         "SELECT account, password FROM `user` WHERE account=%s AND password=%s",
-        @GetSQLValueString($cralwer, $loginUsername, "text"),
-        @GetSQLValueString($cralwer, $password, "text")
+        GetSQLValueString($cralwer, $loginUsername, "text"),
+        GetSQLValueString($cralwer, $password, "text")
     );
 
     $LoginRS = mysqli_query($cralwer,$LoginRS__query);
