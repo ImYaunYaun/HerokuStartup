@@ -63,7 +63,7 @@ if (isset($_SESSION['MM_Username'])) {
 }
 mysqli_select_db( $cralwer,$database_cralwer);
 $query_Login = sprintf("SELECT * FROM `user` WHERE account = %s", GetSQLValueString($cralwer, $colname_Login, "text"));
-$Login = mysqli_query($cralwer ,$$query_Login);
+$Login = mysqli_query($cralwer ,$query_Login);
 $row_Login = mysqli_fetch_assoc($Login);
 $totalRows_Login = mysqli_num_rows($Login);
 $userid = $row_Login['id'];
