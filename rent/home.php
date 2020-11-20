@@ -29,10 +29,10 @@ if ((isset($_GET['doLogout'])) && ($_GET['doLogout'] == "true")) {
 ?>
 <?php
 if (!function_exists("GetSQLValueString")) {
-    function GetSQLValueString($cralwer, $theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+    function GetSQLValueString( $theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
     {
       $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
-
+      global $cralwer;
       $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($cralwer, $theValue) : mysqli_escape_string($cralwer, $theValue);
 
       switch ($theType) {
