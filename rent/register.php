@@ -39,11 +39,11 @@ if ((isset($_POST["MM_insert"])) && ($_POST["MM_insert"] == "from2") and (@$_POS
     include 'encrypt.php'; //加解密檔
     $insertSQL = sprintf(
         "INSERT INTO `user` (account, password, name, phone, image) VALUES (%s, %s, %s, %s, %s)",
-        GetSQLValueString($_POST['account'],"text"),
-        GetSQLValueString(encryptthis($_POST['password'], $key), "text"),
-        GetSQLValueString(encryptthis($_POST['name'], $key), "text"),
-        GetSQLValueString(encryptthis($_POST['phone'], $key), "text"),
-        GetSQLValueString(encryptthis("images\avatar.png", $key), "text")
+        GetSQLValueString($cralwer, $_POST['account'],"text"),
+        GetSQLValueString($cralwer, encryptthis($_POST['password'], $key), "text"),
+        GetSQLValueString($cralwer, encryptthis($_POST['name'], $key), "text"),
+        GetSQLValueString($cralwer, encryptthis($_POST['phone'], $key), "text"),
+        GetSQLValueString($cralwer, encryptthis("images\avatar.png", $key), "text")
         );
 
     mysqli_select_db( $cralwer,$database_cralwer);

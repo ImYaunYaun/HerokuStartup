@@ -28,7 +28,7 @@ if ((isset($_GET['doLogout'])) && ($_GET['doLogout'] == "true")) {
 }
 @session_start();
 if (!function_exists("GetSQLValueString")) {
-    function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "")
+    function GetSQLValueString($cralwer, $theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "")
     {
         $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
 
@@ -62,7 +62,7 @@ if (isset($_SESSION['MM_Username'])) {
     $colname_Login = $_SESSION['MM_Username'];
 }
 mysqli_select_db( $cralwer,$database_cralwer);
-$query_Login = sprintf("SELECT * FROM `user` WHERE account = %s", GetSQLValueString($colname_Login, "text"));
+$query_Login = sprintf("SELECT * FROM `user` WHERE account = %s", GetSQLValueString($cralwer, $colname_Login, "text"));
 $Login = mysqli_query($cralwer ,$$query_Login);
 $row_Login = mysqli_fetch_assoc($Login);
 $totalRows_Login = mysqli_num_rows($Login);
@@ -88,12 +88,12 @@ $temp_phon = ((isset($_POST['phone'])) && ($_POST['phone'] != "")) ? encryptthis
 if ((isset($_POST["MM_update"])) && ($_POST["MM_update"] == "modify")) {
     $updateSQL = sprintf(
         "UPDATE `user` SET account=%s, password=%s, name=%s, phone=%s, subscribe=%s WHERE id=%s",
-        GetSQLValueString($_POST['account'], "text"),
-        GetSQLValueString($temp_pass, "text"),
-        GetSQLValueString($temp_name, "text"),
-        GetSQLValueString($temp_phon, "text"),
-        GetSQLValueString($_POST['subscribe'], "text"),
-        GetSQLValueString($_POST['id'], "int")
+        GetSQLValueString($cralwer, $_POST['account'], "text"),
+        GetSQLValueString($cralwer, $temp_pass, "text"),
+        GetSQLValueString($cralwer, $temp_name, "text"),
+        GetSQLValueString($cralwer, $temp_phon, "text"),
+        GetSQLValueString($cralwer, $_POST['subscribe'], "text"),
+        GetSQLValueString($cralwer, $_POST['id'], "int")
     );
 
     mysqli_select_db($cralwer,$database_cralwer);

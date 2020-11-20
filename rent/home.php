@@ -29,7 +29,7 @@ if ((isset($_GET['doLogout'])) && ($_GET['doLogout'] == "true")) {
 ?>
 <?php
 if (!function_exists("GetSQLValueString")) {
-    function GetSQLValueString( $theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+    function GetSQLValueString($cralwer, $theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
     {
       $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
       global $cralwer;
@@ -63,7 +63,7 @@ if (isset($_SESSION['MM_Username'])) {
 }
 
 mysqli_select_db($cralwer , $database_cralwer);
-$query_Login = sprintf("SELECT * FROM `user` WHERE account = %s", GetSQLValueString($colname_Login, "text"));
+$query_Login = sprintf("SELECT * FROM `user` WHERE account = %s", GetSQLValueString($cralwer, $colname_Login, "text"));
 $Login = mysqli_query($cralwer ,$query_Login);
 $row_Login = mysqli_fetch_assoc($Login);
 $totalRows_Login = mysqli_num_rows($Login);

@@ -29,31 +29,31 @@ if ((isset($_GET['doLogout'])) && ($_GET['doLogout'] == "true")) {
 ?>
 <?php
 if (!function_exists("GetSQLValueString")) {
-    function GetSQLValueString($theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "")
+    function GetSQLValueString($cralwer, $theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
     {
-        $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+      $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+      global $cralwer;
+      $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($cralwer, $theValue) : mysqli_escape_string($cralwer, $theValue);
 
-        $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($theValue) : mysqli_escape_string($theValue);
-
-        switch ($theType) {
-            case "text":
-                $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-                break;
-            case "long":
-            case "int":
-                $theValue = ($theValue != "") ? intval($theValue) : "NULL";
-                break;
-            case "double":
-                $theValue = ($theValue != "") ? "'" . doubleval($theValue) . "'" : "NULL";
-                break;
-            case "date":
-                $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-                break;
-            case "defined":
-                $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
-                break;
-        }
-        return $theValue;
+      switch ($theType) {
+        case "text":
+          $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+          break;    
+        case "long":
+        case "int":
+          $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+          break;
+        case "double":
+          $theValue = ($theValue != "") ? "'" . doubleval($theValue) . "'" : "NULL";
+          break;
+        case "date":
+          $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+          break;
+        case "defined":
+          $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+          break;
+      }
+      return $theValue;
     }
 }
 
@@ -63,7 +63,7 @@ if (isset($_SESSION['MM_Username'])) {
 }
 
 mysqli_select_db($cralwer , $database_cralwer);
-$query_Login = sprintf("SELECT * FROM `user` WHERE account = %s", GetSQLValueString($colname_Login, "text"));
+$query_Login = sprintf("SELECT * FROM `user` WHERE account = %s", GetSQLValueString($cralwer, $colname_Login, "text"));
 $Login = mysqli_query($cralwer ,$query_Login);
 $row_Login = mysqli_fetch_assoc($Login);
 $totalRows_Login = mysqli_num_rows($Login);
@@ -88,6 +88,8 @@ $totalRows_Login = mysqli_num_rows($Login);
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+    <link rel="shortcut icon" href="images/ZuoHuo_180.png">
+    <link rel="apple-touch-icon" sizes="180x180" href="images/ZuoHuo_180.png">    
     <script>
         if('serviceWorker' in navigator){
             console.log("Will service worker register?");
