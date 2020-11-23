@@ -211,7 +211,7 @@ $queryString_webinfo = sprintf("&totalRows_webinfo=%d%s", $totalRows_webinfo, $q
                       if ($subscribeCount >= 1) {
                         echo '<img class="favorite" id="' . $row_webinfo["Link"] . '" src="images/selectedFav.png" width="20px" onClick="Favorate(this,' . $userid . ')">';
                       } else {
-                        echo '<img class="favorite" id="' . $row_webinfo["Link"] . '" src="images/favorite.png" width="20px" onClick="Favorate(this,' . $userid . ')">';
+                        echo '<img class="favorite" id="' . $row_webinfo["Link"] . '" src="images/Favorite.png" width="20px" onClick="Favorate(this,' . $userid . ')">';
                       }
                       ?>
                     </td>

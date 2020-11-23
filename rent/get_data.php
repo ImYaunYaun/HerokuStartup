@@ -65,7 +65,7 @@ function Query($offset, $limit, $WebName, $search, $moneyS, $moneyE, $orderby, $
 		$subscribeCount = mysqli_query($cralwer,$query_subscribe);
 		$row_subscribeCount=mysqli_fetch_assoc($subscribeCount);
 		$selectedFav = '<img class="favorite" id="' . $row["Link"] . '" src="images/selectedFav.png" width="20px" onClick="Favorate(this,' . $userid . ')">';
-		$favorite = '<img class="favorite" id="' . $row["Link"] . '" src="images/favorite.png" width="20px" onClick="Favorate(this,' . $userid . ')">';
+		$favorite = '<img class="favorite" id="' . $row["Link"] . '" src="images/Favorite.png" width="20px" onClick="Favorate(this,' . $userid . ')">';
 		$mystr = $row_subscribeCount['countSubscribe']>="1" ? $selectedFav : $favorite;
 		$Is_Delete=$row['Is_Delete']=='Y'?"<span class=\"badge badge-danger\" >已下架</span>":"";
 		if (isset($userid) AND $userid!="") {
