@@ -116,7 +116,7 @@ $totalRows_Login = mysqli_num_rows($Login);
 
     <!-- navbar -->
     <nav class="navbar navbar-expand-md navbar-dark myHeader">
-        <a class="navbar-brand" href="home.php">
+        <a class="navbar-brand" href="index.php">
             <img src="images/WhiteIcon.png" width="28" class="d-inline-block align-top">
             作伙
         </a>
@@ -156,6 +156,7 @@ $totalRows_Login = mysqli_num_rows($Login);
                     </section>
                     <div class="form-group">
                         <input type="text" class="form-control inputSearch" name="search" placeholder="輸入地段、路名、商圈" required>
+                        <input type="hidden" name="home" value="home">
                         <select class="form-control" style="margin-bottom: 10px;">
                             <option value="" disabled selected>選擇價格區間</option>
                             <option value="0 AND 5000">5000元以下</option>

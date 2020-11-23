@@ -118,7 +118,7 @@ $totalRows_Login = mysqli_num_rows($Login);
 
         <!-- navbar -->
         <nav class="navbar navbar-expand-md navbar-dark myHeader">
-            <a class="navbar-brand" href="home.php">
+            <a class="navbar-brand" href="index.php">
                 <img src="images/WhiteIcon.png" width="28" class="d-inline-block align-top">
                 作伙
             </a>
@@ -143,8 +143,6 @@ $totalRows_Login = mysqli_num_rows($Login);
                 </ul>
             </div>
         </nav>
-
-
         <!-- container -->
         <div class="container-fluid p-0">
             <!-- sticky search area -->
@@ -261,7 +259,6 @@ $totalRows_Login = mysqli_num_rows($Login);
 
                 <script>
                     (function($){
-
                         $.scrolltop({
                             template: '<i class="fa fa-chevron-up"></i>',
                             class: 'custom-scrolltop'
@@ -289,7 +286,7 @@ $totalRows_Login = mysqli_num_rows($Login);
 
     <!-- footer -->
     <div class="footer">
-        <a href="home.php"><img src="images/WhiteIcon.png" alt="logo" class="HomeIcon">作伙</a>
+        <a href="index.php"><img src="images/WhiteIcon.png" alt="logo" class="HomeIcon">作伙</a>
     </div>
     <script type="text/javascript">
 
@@ -395,7 +392,13 @@ $totalRows_Login = mysqli_num_rows($Login);
         }
         
     </script>
-
+    <?php 
+    if(isset($_POST['home'])&& $_POST['home']="home"){
+        echo "<script>
+        $('#submit').trigger('click');
+        </script>";
+    }
+    ?>
 </body>
 
 </html>
