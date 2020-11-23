@@ -103,7 +103,7 @@ if (isset($_GET['totalRows_webinfo'])) {
   $totalRows_webinfo = $_GET['totalRows_webinfo'];
 } else {
   $all_webinfo = mysqli_query($cralwer,$query_webinfo);
-  $totalRows_webinfo = mysqli_num_rows($cralwer,$all_webinfo);
+  $totalRows_webinfo = mysqli_num_rows($all_webinfo);
 }
 $totalPages_webinfo = ceil($totalRows_webinfo / $maxRows_webinfo) - 1;
 
