@@ -370,8 +370,8 @@ $totalRows_favorite = mysqli_num_rows($favorite);
 
   <div class="header">
     <span>
-      <a href="home.php"><img src="images/WhiteIcon.png" alt="logo" class="HomeIcon"></a>
-      <a href="home.php">作伙</a>
+      <a href="index.php"><img src="images/WhiteIcon.png" alt="logo" class="HomeIcon"></a>
+      <a href="index.php">作伙</a>
     </span>
 
     <div class="headerRight">
@@ -474,8 +474,8 @@ $totalRows_favorite = mysqli_num_rows($favorite);
 
 
   <div class="footer">
-    <span><a href="home.php"><img src="images/WhiteIcon.png" alt="logo" class="HomeIcon"></a></span>
-    <span><a href="home.php">作伙</a></span>
+    <span><a href="index.php"><img src="images/WhiteIcon.png" alt="logo" class="HomeIcon"></a></span>
+    <span><a href="index.php">作伙</a></span>
   </div>
 
 </body>

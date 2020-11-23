@@ -93,7 +93,7 @@ $totalRows_user = mysqli_num_rows($user);
 
     <!-- navbar -->
     <nav class="navbar navbar-expand-md navbar-dark myHeader">
-        <a class="navbar-brand" href="home.php">
+        <a class="navbar-brand" href="index.php">
             <img src="images/WhiteIcon.png" width="28" class="d-inline-block align-top">
             作伙
         </a>
