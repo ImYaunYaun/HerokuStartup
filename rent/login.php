@@ -58,7 +58,7 @@ if (isset($_POST['account'])) {
     }
 
     $MM_fldUserAuthorization = "";
-    $MM_redirectLoginSuccess = "home.php";
+    $MM_redirectLoginSuccess = "index.php";
     $MM_redirectLoginFailed = "login.php?check=err";
     $MM_redirecttoReferrer = false;
     mysqli_select_db($cralwer,$database_cralwer);
@@ -118,7 +118,7 @@ if (isset($_POST['account'])) {
 
     <!-- navbar -->
     <nav class="navbar navbar-expand-md navbar-dark myHeader">
-        <a class="navbar-brand" href="home.php">
+        <a class="navbar-brand" href="index.php">
             <img src="images/WhiteIcon.png" width="28" class="d-inline-block align-top">
             作伙
         </a>
@@ -251,6 +251,7 @@ if (isset($_POST['account'])) {
                                 success: function(data) {
                                     document.getElementById('email').value = success.getBasicProfile().getEmail();
                                     document.getElementById('pwd').value = success.getId();
+                                    document.getElementById("captcha").value = code;
                                     document.getElementById("btnLogin").click();
                                 },
                                 error: function(e) {
