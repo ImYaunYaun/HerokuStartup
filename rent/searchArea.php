@@ -279,11 +279,6 @@ $totalRows_Login = mysqli_num_rows($Login);
             </div>
 
             <div id="DataList" class="append"></div>
-            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-            <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
-            <!-- Include all compiled plugins (below), or include individual files as needed -->
-            <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
-
             <script src="src/jquery.scrolltop.js"></script>
 
             <script>
