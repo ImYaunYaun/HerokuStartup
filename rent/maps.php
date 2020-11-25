@@ -191,7 +191,7 @@ $totalRows_Login = mysqli_num_rows($Login);
         function initMap() {
             var map = new google.maps.Map(document.getElementById('map'), {
                 panControl: false,
-                zoomControl: true, //可以通過單击縮放按钮来縮放地圖
+                zoomControl: false, //可以通過單击縮放按钮来縮放地圖
                 mapTypeControl: true,
                 scaleControl: false,
                 streetViewControl: false,
