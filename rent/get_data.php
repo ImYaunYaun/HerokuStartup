@@ -144,7 +144,7 @@ function Query($offset, $limit, $WebName, $search, $moneyS, $moneyE, $orderby, $
 	$data = mysqli_query($cralwer,$query);
 	$row = mysqli_fetch_assoc($data);
 	$Rowcount=mysqli_num_rows($data);
-	if($Rowcount=="0"){
+	if($Rowcount=="0" OR $Rowcount==""){
 		echo "無資料!";
 	}else{
 		do{

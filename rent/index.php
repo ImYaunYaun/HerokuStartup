@@ -128,7 +128,7 @@ $totalRows_Login = mysqli_num_rows($Login);
             <ul class="navbar-nav ml-auto">
                 <?php if ($totalRows_Login == 0) { // 尚未登入顯示
                 ?>
-                    <li class="nav-item"><a class="nav-link" href="searchArea.php">搜尋列表</a></li>
+                    <li class="nav-item"><a class="nav-link" href="searchArea.php?home=home">搜尋列表</a></li>
                     <li class="nav-item"><a class="nav-link" href="login.php">登入</a></li>
                     <li class="nav-item"><a class="nav-link" href="register.php">註冊</a></li>
                 <?php } // Show if recordset empty 

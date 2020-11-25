@@ -154,7 +154,7 @@ $totalRows_Login = mysqli_num_rows($Login);
                             <thead>
                                 <tr>
                                     <th colspan="5">
-                                        <a href="searchArea.php" style="color:black; text-decoration:none; font-weight:500;">區域搜尋 |</a> 地圖搜尋
+                                        <a href="searchArea.php?home=home" style="color:black; text-decoration:none; font-weight:500;">區域搜尋 |</a> 地圖搜尋
                                     </th>
                                 </tr>
                             </thead>

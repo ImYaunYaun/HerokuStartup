@@ -176,7 +176,7 @@ $row_webinfo = mysqli_fetch_assoc($webinfo);
 
                         <?php if ($totalRows_Login > 0) { // 登入後顯示 
                         ?>
-                            <li><a href="searchArea.php">搜尋列表</a></li>
+                            <li><a href="searchArea.php?home=home">搜尋列表</a></li>
                             <li><a href="<?php echo $logoutAction ?>">登出</a></li>
                         <?php } // Show if recordset not empty 
                         ?>
