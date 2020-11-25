@@ -164,7 +164,7 @@ $row_webinfo = mysqli_fetch_assoc($webinfo);
                         <th rowspan="2"><img width="55px" height="55px" style="border-radius:50%" src="images/<?php echo $row_Login['image']; ?>"></th>
                         <th><a href="favorite.php"><?php echo $totalRows_favorite ?></a></th>
                         <th><a href="#" id="price"></a></th>
-                        <th><a href="#">(num)</a></th>
+                        <th><a href="#">0</a></th>
                     </tr>
 
                     <tr>

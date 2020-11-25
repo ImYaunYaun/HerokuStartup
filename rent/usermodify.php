@@ -207,7 +207,7 @@ $row_webinfo = mysqli_fetch_assoc($webinfo);
                         <th rowspan="2"><img width="55px" height="55px" style="border-radius:50%" src="<?php  echo decryptthis($row_Login['image'],$key);?>"></th>
                         <th class="text-center"><?php echo $totalRows_favorite ?></th>
                         <th class="text-center" id="price"></th>
-                        <th class="text-center">(num)</th>
+                        <th class="text-center">0</th>
                     </tr>
 
                     <tr>
@@ -257,28 +257,28 @@ $row_webinfo = mysqli_fetch_assoc($webinfo);
 
                             <tr>
                                 <th>密碼</th>
-                                <td><input class="form-control" type="text" name="password" value="" placeholder="******"></td>
+                                <td><input class="form-control" type="password" name="password" value="" placeholder="******"></td>
                             </tr>
 
                             <tr>
                                 <th>訂閱通知</th>
                                 <td>
                                     <!-- 判斷是否訂閱 -->
-                                    <?php if ($row_Login['subscribe'] == "是") { ?>
+                                    <?php if ($row_Login['subscribe'] == "1") { ?>
                                         <label class="radio-inline">
-                                            <input type="radio" name="subscribe" value="是" checked="checked">是
+                                            <input type="radio" name="subscribe" value="1" checked="checked">是
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="subscribe" value="否">否
+                                            <input type="radio" name="subscribe" value="0">否
                                         </label>
                                     <?php } ?>
 
-                                    <?php if ($row_Login['subscribe'] == "否") { ?>
+                                    <?php if ($row_Login['subscribe'] == "0") { ?>
                                         <label class="radio-inline">
-                                            <input type="radio" name="subscribe" value="是">是
+                                            <input type="radio" name="subscribe" value="1">是
                                         </label>
                                         <label class="radio-inline">
-                                            <input type="radio" name="subscribe" value="否" checked="checked">否
+                                            <input type="radio" name="subscribe" value="0" checked="checked">否
                                         </label>
                                     <?php } ?>
                                 </td>

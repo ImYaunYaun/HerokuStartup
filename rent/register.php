@@ -71,6 +71,7 @@ $totalRows_user = mysqli_num_rows($user);
 <head>
     <title>作伙</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="icon" href="images/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="src/style.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
@@ -79,7 +80,7 @@ $totalRows_user = mysqli_num_rows($user);
     <style>
         body {
             font-family: 微軟正黑體;
-            background-image: url('images/HomeBackground.jpg');
+            background-image: url('images/registerBackground.jpg');
             background-attachment: fixed;
             background-repeat: no-repeat;
             background-position: center;
@@ -104,7 +105,7 @@ $totalRows_user = mysqli_num_rows($user);
         <div class="row justify-content-center">
 
             <div class="col-12 col-sm-10 col-md-8 col-lg-4">
-                <form class="formContainer" action="<?php echo $editFormAction; ?>" name="from2" method="POST">
+                <form class="formContainer RegisterFormMargin" action="<?php echo $editFormAction; ?>" name="from2" method="POST">
                     <section class="title">
                         <img src="images/BrownIcon.png" alt="logo" class="HomeIcon"> | 加入作伙，找一個家
                     </section>

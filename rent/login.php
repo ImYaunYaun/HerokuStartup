@@ -95,6 +95,7 @@ if (isset($_POST['account'])) {
 <head>
     <title>作伙</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <meta name="google-signin-client_id" content="106996317158-4im0d5hkld50a5ucueqqodvptgpuu6km.apps.googleusercontent.com">
     <link rel="icon" href="images/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="src/style.css">
@@ -128,7 +129,7 @@ if (isset($_POST['account'])) {
     <div class="container-fluid">
         <div class="row justify-content-center">
             <div class="col-12 col-sm-10 col-md-8 col-lg-4">
-                <form class="formContainer" action="<?php echo $loginFormAction; ?>" name="login" method="POST">
+                <form class="formContainer LoginFormMargin" action="<?php echo $loginFormAction; ?>" name="login" method="POST">
 
                     <!-- 驗證帳號密碼是否正確 -->
                     <?php $_GET['check'] = isset($_GET['check']) ? $_GET['check'] : "";
@@ -171,7 +172,7 @@ if (isset($_POST['account'])) {
                             <tr>
                                 <td class="w-50">
                                     <button type="button" class="btn btn-block btn-outline-secondary" onclick="GoogleLogin();">
-                                        <img src="images/Google_Logo.png" width="29px" class="googleLogo">Google帳戶登入
+                                        <img src="images/Google_Logo.png" width="16.5px" class="googleLogo">&nbsp; Google登入
                                     </button>
                                 </td>
                                 <!-- <td class="w-50">
