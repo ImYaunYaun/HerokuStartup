@@ -15,7 +15,7 @@ function Query($mylat,$mylng,$search)
 	SELECT *
 	FROM page_data AS PD 
 	LEFT JOIN localtion AS LA ON PD.id = LA.houseid 
-	WHERE (1=1) AND ABS(lat-{$mylat})<=0.1 AND ABS(lng-{$mylng})<=0.1 {$SqlWhere}
+	WHERE (1=1) AND ABS(lat-{$mylat})<=0.005 AND ABS(lng-{$mylng})<=0.005 {$SqlWhere}
 	ORDER BY lat DESC
 	LIMIT 0 , 15";
 
