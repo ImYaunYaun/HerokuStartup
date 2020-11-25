@@ -29,31 +29,31 @@ if ((isset($_GET['doLogout'])) && ($_GET['doLogout'] == "true")) {
 ?>
 <?php
 if (!function_exists("GetSQLValueString")) {
-    function GetSQLValueString($cralwer, $theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "") 
+    function GetSQLValueString($cralwer, $theValue, $theType, $theDefinedValue = "", $theNotDefinedValue = "")
     {
-      $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
-      global $cralwer;
-      $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($cralwer, $theValue) : mysqli_escape_string($cralwer, $theValue);
+        $theValue = get_magic_quotes_gpc() ? stripslashes($theValue) : $theValue;
+        global $cralwer;
+        $theValue = function_exists("mysqli_real_escape_string") ? mysqli_real_escape_string($cralwer, $theValue) : mysqli_escape_string($cralwer, $theValue);
 
-      switch ($theType) {
-        case "text":
-          $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-          break;    
-        case "long":
-        case "int":
-          $theValue = ($theValue != "") ? intval($theValue) : "NULL";
-          break;
-        case "double":
-          $theValue = ($theValue != "") ? "'" . doubleval($theValue) . "'" : "NULL";
-          break;
-        case "date":
-          $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
-          break;
-        case "defined":
-          $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
-          break;
-      }
-      return $theValue;
+        switch ($theType) {
+            case "text":
+                $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+                break;
+            case "long":
+            case "int":
+                $theValue = ($theValue != "") ? intval($theValue) : "NULL";
+                break;
+            case "double":
+                $theValue = ($theValue != "") ? "'" . doubleval($theValue) . "'" : "NULL";
+                break;
+            case "date":
+                $theValue = ($theValue != "") ? "'" . $theValue . "'" : "NULL";
+                break;
+            case "defined":
+                $theValue = ($theValue != "") ? $theDefinedValue : $theNotDefinedValue;
+                break;
+        }
+        return $theValue;
     }
 }
 
@@ -62,9 +62,9 @@ if (isset($_SESSION['MM_Username'])) {
     $colname_Login = $_SESSION['MM_Username'];
 }
 
-mysqli_select_db($cralwer , $database_cralwer);
+mysqli_select_db($cralwer, $database_cralwer);
 $query_Login = sprintf("SELECT * FROM `user` WHERE account = %s", GetSQLValueString($cralwer, $colname_Login, "text"));
-$Login = mysqli_query($cralwer ,$query_Login);
+$Login = mysqli_query($cralwer, $query_Login);
 $row_Login = mysqli_fetch_assoc($Login);
 $totalRows_Login = mysqli_num_rows($Login);
 
@@ -82,6 +82,7 @@ $totalRows_Login = mysqli_num_rows($Login);
 <head>
     <title>作伙</title>
     <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
     <link rel="manifest" href="manifest.json">
     <link rel="icon" href="images/logo.ico" type="image/x-icon">
     <link rel="stylesheet" href="src/style.css">
@@ -89,14 +90,14 @@ $totalRows_Login = mysqli_num_rows($Login);
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
     <link rel="shortcut icon" href="images/ZuoHuo_180.png">
-    <link rel="apple-touch-icon" sizes="180x180" href="images/ZuoHuo_180.png">    
+    <link rel="apple-touch-icon" sizes="180x180" href="images/ZuoHuo_180.png">
     <script>
-        if('serviceWorker' in navigator){
+        if ('serviceWorker' in navigator) {
             console.log("Will service worker register?");
-            navigator.serviceWorker.register('service-worker.js').then(function(reg){
+            navigator.serviceWorker.register('service-worker.js').then(function(reg) {
                 console.log("Yes it did.");
-            }).catch(function(err){
-                console.log("Err:",err);
+            }).catch(function(err) {
+                console.log("Err:", err);
             });
         }
     </script>
@@ -135,7 +136,8 @@ $totalRows_Login = mysqli_num_rows($Login);
 
                 <?php if ($totalRows_Login > 0) { // 登入後顯示 
                 ?>
-                    <li class="nav-item active"><a class="nav-link" href="userPage.php"><b>嗨！<?php include 'encrypt.php'; echo decryptthis($row_Login['name'],$key); ?></b></a></li>
+                    <li class="nav-item active"><a class="nav-link" href="userPage.php"><b>嗨！<?php include 'encrypt.php';
+                                                                                                echo decryptthis($row_Login['name'], $key); ?></b></a></li>
                     <li class="nav-item"><a class="nav-link" href="searchArea.php">搜尋列表</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?php echo $logoutAction ?>">登出</a></li>
                 <?php } // Show if recordset not empty 
@@ -149,7 +151,7 @@ $totalRows_Login = mysqli_num_rows($Login);
     <div class="container-fluid">
         <div class="row justify-content-center">
 
-            <div class="col-8 col-sm-8 col-md-3 col-lg-4">
+            <div class="col-10 col-sm-10 col-md-5 col-lg-3">
                 <form class="formContainer" action="searchArea.php" method="post">
                     <section class="title">
                         <img src="images/BrownIcon.png" alt="logo" class="HomeIcon"> | 找到最適合您的家
