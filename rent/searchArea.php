@@ -61,9 +61,9 @@ $colname_Login = "-1";
 if (isset($_SESSION['MM_Username'])) {
     $colname_Login = $_SESSION['MM_Username'];
 }
-mysqli_select_db( $cralwer ,$database_cralwer);
+mysqli_select_db($cralwer, $database_cralwer);
 $query_Login = sprintf("SELECT * FROM `user` WHERE account = %s", GetSQLValueString($cralwer, $colname_Login, "text"));
-$Login = mysqli_query( $cralwer ,$query_Login);
+$Login = mysqli_query($cralwer, $query_Login);
 $row_Login = mysqli_fetch_assoc($Login);
 $totalRows_Login = mysqli_num_rows($Login);
 ?>
@@ -103,13 +103,13 @@ $totalRows_Login = mysqli_num_rows($Login);
             padding: 10px;
             z-index: 1;
         }
+
         .custom-scrolltop {
-            background-color:rgb(126, 83, 34, 0.85) !important;
+            background-color: rgb(126, 83, 34, 0.85) !important;
             font-size: 1.5em;
             line-height: 40px;
             border-radius: 50%;
         }
-
     </style>
 </head>
 
@@ -136,13 +136,16 @@ $totalRows_Login = mysqli_num_rows($Login);
 
                     <?php if ($totalRows_Login > 0) { // 登入後顯示 
                     ?>
-                        <li class="nav-item active"><a class="nav-link" href="userPage.php"><b>嗨！<?php include 'encrypt.php'; echo decryptthis($row_Login['name'],$key); ?></b></a></li>
+                        <li class="nav-item active"><a class="nav-link" href="userPage.php"><b>嗨！<?php include 'encrypt.php';
+                                                                                                    echo decryptthis($row_Login['name'], $key); ?></b></a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo $logoutAction ?>">登出</a></li>
                     <?php } // Show if recordset not empty 
                     ?>
                 </ul>
             </div>
         </nav>
+
+
         <!-- container -->
         <div class="container-fluid p-0">
             <!-- sticky search area -->
@@ -162,7 +165,7 @@ $totalRows_Login = mysqli_num_rows($Login);
 
                                 <tbody>
                                     <tr>
-                                        <td colspan="3">
+                                        <td colspan="4">
                                             <div class="input-group">
                                                 <input type="text" class="form-control" name="qtxt" id="qtxt" value="<?php echo isset($_POST['qtxt']) ? $_POST['qtxt'] : ""; ?>" placeholder="輸入房屋名稱或地址..."></input>
                                                 <div class="input-group-append">
@@ -172,7 +175,7 @@ $totalRows_Login = mysqli_num_rows($Login);
                                         </td>
 
                                         <td colspan="2">
-                                            <div id="twzipcode_ADV" name="twzipcode_ADV" class="form-inline"></div>        
+                                            <div id="twzipcode_ADV" name="twzipcode_ADV" class="form-inline"></div>
                                             <script>
                                                 $("#twzipcode_ADV").twzipcode({
                                                     zipcodeIntoDistrict: true, // 郵遞區號自動顯示在地區
@@ -180,13 +183,13 @@ $totalRows_Login = mysqli_num_rows($Login);
                                                     countyName: "city", // 自訂城市 select 標籤的 name 值
                                                     districtName: "town" // 自訂地區 select 標籤的 name 值
                                                 });
-                                                
                                             </script>
                                         </td>
                                     </tr>
 
                                     <tr>
                                         <td colspan="2">房屋租金</td>
+                                        <td>坪數</td>
                                         <td>房屋來源</td>
                                         <td colspan="2">排序方式</td>
                                     </tr>
@@ -200,6 +203,13 @@ $totalRows_Login = mysqli_num_rows($Login);
                                                 <option value="10000">10000</option>
                                                 <option value="20000">20000</option>
                                                 <option value="30000">30000</option>
+                                                <option value="40000">40000</option>
+                                                <option value="50000">50000</option>
+                                                <option value="60000">60000</option>
+                                                <option value="70000">70000</option>
+                                                <option value="80000">80000</option>
+                                                <option value="90000">90000</option>
+                                                <option value="100000">100000</option>
                                             </select>
                                         </td>
 
@@ -211,9 +221,27 @@ $totalRows_Login = mysqli_num_rows($Login);
                                                 <option value="10000">10000</option>
                                                 <option value="20000">20000</option>
                                                 <option value="30000">30000</option>
+                                                <option value="40000">40000</option>
+                                                <option value="50000">50000</option>
+                                                <option value="60000">60000</option>
+                                                <option value="70000">70000</option>
+                                                <option value="80000">80000</option>
+                                                <option value="90000">90000</option>
+                                                <option value="100000">100000</option>
                                             </select>
                                         </td>
-
+                                        <td>
+                                            <select name="square" class="form-control">
+                                                <option value="<?php echo isset($_POST['square']) ? $_POST['square'] : ""; ?>" selected><?php echo isset($_POST['square']) && $_POST['square'] != "" ? $_POST['square'] : "不限"; ?></option>
+                                                <option value="">不限</option>
+                                                <option value="10坪以下">10坪以下</option>
+                                                <option value="10-20坪">10-20坪</option>
+                                                <option value="20-30坪">20-30坪</option>
+                                                <option value="30-40坪">30-40坪</option>
+                                                <option value="40-50坪">40-50坪</option>
+                                                <option value="50坪以上">50坪以上</option>
+                                            </select>
+                                        </td>
                                         <td>
                                             <select id="WebName" name="WebName" class="form-control">
                                                 <option value="<?php echo isset($_POST['WebName']) ? $_POST['WebName'] : ""; ?>" selected><?php echo isset($_POST['WebName']) && $_POST['WebName'] != "" ? $_POST['WebName'] : "全部"; ?></option>
@@ -227,17 +255,17 @@ $totalRows_Login = mysqli_num_rows($Login);
                                         <td>
                                             <select name="orderby" class="form-control">
                                                 <option value="<?php echo isset($_POST['orderby']) ? $_POST['orderby'] : "house"; ?>" selected><?php echo isset($_POST['orderby']) ? $_POST['orderby'] : "house"; ?></option>
-                                                <option value="house">房屋來源</option>
-                                                <option value="money">房屋租金</option>
-                                                <option value="date">刊登時間</option>
+                                                <option value="房屋來源">房屋來源</option>
+                                                <option value="房屋租金">房屋租金</option>
+                                                <option value="刊登時間">刊登時間</option>
                                             </select>
                                         </td>
 
                                         <td>
                                             <select name="dict" class="form-control">
                                                 <option value="<?php echo isset($_POST['dict']) ? $_POST['dict'] : "ASC"; ?>" selected><?php echo isset($_POST['dict']) ? $_POST['dict'] : "ASC"; ?></option>
-                                                <option value="ASC">ASC</option>
-                                                <option value="DESC">DESC</option>
+                                                <option value="由小到大">由小到大</option>
+                                                <option value="由大到小">由大到小</option>
                                             </select>
 
                                         </td>
@@ -250,155 +278,165 @@ $totalRows_Login = mysqli_num_rows($Login);
             </div>
 
             <div id="DataList" class="append"></div>
-                <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
-                <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
-                <!-- Include all compiled plugins (below), or include individual files as needed -->
-                <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+            <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+            <script src="http://code.jquery.com/jquery-3.1.0.min.js"></script>
+            <!-- Include all compiled plugins (below), or include individual files as needed -->
+            <script src="http://netdna.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
 
-                <script src="src/jquery.scrolltop.js"></script>
+            <script src="src/jquery.scrolltop.js"></script>
 
-                <script>
-                    (function($){
-                        $.scrolltop({
-                            template: '<i class="fa fa-chevron-up"></i>',
-                            class: 'custom-scrolltop'
-                        });
+            <script>
+                (function($) {
 
-                    })(jQuery);
+                    $.scrolltop({
+                        template: '<i class="fa fa-chevron-up"></i>',
+                        class: 'custom-scrolltop'
+                    });
 
-                </script>
-                <script type="text/javascript">
+                })(jQuery);
+            </script>
 
-                var _gaq = _gaq || [];
-                _gaq.push(['_setAccount', 'UA-36251023-1']);
-                _gaq.push(['_setDomainName', 'jqueryscript.net']);
-                _gaq.push(['_trackPageview']);
+</body>
+<script type="text/javascript">
+    var _gaq = _gaq || [];
+    _gaq.push(['_setAccount', 'UA-36251023-1']);
+    _gaq.push(['_setDomainName', 'jqueryscript.net']);
+    _gaq.push(['_trackPageview']);
 
-                (function() {
-                    var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
-                    ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
-                    var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
-                })();
+    (function() {
+        var ga = document.createElement('script');
+        ga.type = 'text/javascript';
+        ga.async = true;
+        ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+        var s = document.getElementsByTagName('script')[0];
+        s.parentNode.insertBefore(ga, s);
+    })();
+</script>
 
-                </script>
-        </div>
-    </section>
 
-    <!-- footer -->
-    <div class="footer">
-        <a href="index.php"><img src="images/WhiteIcon.png" alt="logo" class="HomeIcon">作伙</a>
-    </div>
-    <script type="text/javascript">
+</div>
+</section>
 
-        var WebName = '<?php echo $_POST['WebName']; ?>';
-        var qtxt = '<?php echo $_POST['qtxt']; ?>'; //查詢房名、地址
-        var moneyS = '<?php echo $_POST['moneyS']; ?>';
-        var moneyE = '<?php echo $_POST['moneyE']; ?>';
-        var orderby = '<?php echo $_POST['orderby']; ?>';
-        var dict = '<?php echo $_POST['dict']; ?>';
-        var userid = '<?php echo isset($row_Login['id']) ? $row_Login['id'] : ""; ?>';
-        var city ='<?php echo $_POST['city'];?>';
-        var town='<?php echo $_POST['town'];?>';
-        $(document).ready(function() {
-            var flag = 0;
-            $.ajax({
-                type: "POST",
-                url: "get_data.php",
-                data: {
-                    'offset': 0,
-                    'limit': 10,
-                    'WebName': WebName,
-                    'search': qtxt,
-                    'moneyS': moneyS,
-                    'moneyE': moneyE,
-                    'orderby': orderby,
-                    'dict': dict,
-                    'userid': userid,
-                    'city':city,
-                    'town':town
-                },
-                contentType: "application/x-www-form-urlencoded; charset=utf-8",
-                success: function(data) {
+<!-- footer -->
+<div class="footer">
+    <a href="index.php"><img src="images/WhiteIcon.png" alt="logo" class="HomeIcon">作伙</a>
+</div>
+<script type="text/javascript">
+    var WebName = '<?php echo $_POST['WebName']; ?>';
+    var qtxt = '<?php echo $_POST['qtxt']; ?>'; //查詢房名、地址
+    var moneyS = '<?php echo $_POST['moneyS']; ?>';
+    var moneyE = '<?php echo $_POST['moneyE']; ?>';
+    var orderby = '<?php echo $_POST['orderby']; ?>';
+    var dict = '<?php echo $_POST['dict']; ?>';
+    var userid = '<?php echo isset($row_Login['id']) ? $row_Login['id'] : ""; ?>';
+    var city = '<?php echo $_POST['city']; ?>';
+    var town = '<?php echo $_POST['town']; ?>';
+    var square = '<?php echo $_POST['square']; ?>';
+    $(document).ready(function() {
+        var flag = 0;
+        $.ajax({
+            type: "POST",
+            url: "get_data.php",
+            data: {
+                'offset': 0,
+                'limit': 10,
+                'WebName': WebName,
+                'search': qtxt,
+                'moneyS': moneyS,
+                'moneyE': moneyE,
+                'orderby': orderby,
+                'dict': dict,
+                'userid': userid,
+                'city': city,
+                'town': town,
+                'square': square
+            },
+            contentType: "application/x-www-form-urlencoded; charset=utf-8",
+            success: function(data) {
+                if (data.substr(-4) == "無資料!") {
+
+                } else {
                     $('#DataList').append(data);
                     flag += 10;
-                    $('#twzipcode_ADV').twzipcode({
-                        'countySel':city ,
-                        'districtSel': town
-                    });
-                },
-                error: function(e) {
-                    console.log('error', e)
                 }
-            });
 
-            $(window).scroll(function() {
-                last = $("body").height() - $(window).height() - 100
-                if ($(window).scrollTop() >= last) {
-                    $.ajax({
-                        type: "POST",
-                        url: "get_data.php",
-                        data: {
-                            'offset': flag,
-                            'limit': 10,
-                            'WebName': WebName,
-                            'search': qtxt,
-                            'moneyS': moneyS,
-                            'moneyE': moneyE,
-                            'orderby': orderby,
-                            'dict': dict,
-                            'userid': userid,
-                            'city':city,
-                            'town':town
-                        },
-                        contentType: "application/x-www-form-urlencoded; charset=utf-8",
-                        success: function(data) {
+            },
+            error: function(e) {
+                console.log('error', e)
+            }
+        });
+
+        $(window).scroll(function() {
+            last = $("body").height() - $(window).height() - 100
+            if ($(window).scrollTop() >= last) {
+                $.ajax({
+                    type: "POST",
+                    url: "get_data.php",
+                    data: {
+                        'offset': flag,
+                        'limit': 10,
+                        'WebName': WebName,
+                        'search': qtxt,
+                        'moneyS': moneyS,
+                        'moneyE': moneyE,
+                        'orderby': orderby,
+                        'dict': dict,
+                        'userid': userid,
+                        'city': city,
+                        'town': town,
+                        'square': square
+                    },
+                    contentType: "application/x-www-form-urlencoded; charset=utf-8",
+                    success: function(data) {
+                        if (data.substr(-4) == "無資料!") {
+
+                        } else {
                             $('#DataList').append(data);
                             flag += 10;
-
-                            $('#twzipcode_ADV').twzipcode({
-                                'countySel':city ,
-                                'districtSel': town
-                            });
-                        },
-                        error: function(e) {
-                            console.log('error', e)
                         }
-                    });
-                }
-            });
-        });
- 
-    </script>
-
-    <script>
-        /**  back to top **/
-        var mybutton = document.getElementById("myBtn");
-        window.onscroll = function() {
-            scrollFunction()
-        };
-
-
-        function scrollFunction() {
-            if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
-                mybutton.style.display = "block";
-            } else {
-                mybutton.style.display = "none";
+                        $('#twzipcode_ADV').twzipcode({
+                            'countySel': city,
+                            'districtSel': town
+                        });
+                    },
+                    error: function(e) {
+                        console.log('error', e)
+                    }
+                });
             }
-        }
+        });
+    });
+</script>
 
-        function topFunction() {
-            document.body.scrollTop = 0;
-            document.documentElement.scrollTop = 0;
+<script>
+    /**  back to top **/
+    var mybutton = document.getElementById("myBtn");
+    window.onscroll = function() {
+        scrollFunction()
+    };
+
+
+    function scrollFunction() {
+        if (document.body.scrollTop > 50 || document.documentElement.scrollTop > 50) {
+            mybutton.style.display = "block";
+        } else {
+            mybutton.style.display = "none";
         }
-        
-    </script>
-    <?php 
-    if(isset($_POST['home'])&& $_POST['home']="home"){
-        echo "<script>
+    }
+
+    function topFunction() {
+        document.body.scrollTop = 0;
+        document.documentElement.scrollTop = 0;
+    }
+</script>
+<?php
+if (isset($_POST['home']) && $_POST['home'] = "home") {
+    echo "<script>
         $('#submit').trigger('click');
         </script>";
-    }
-    ?>
+}
+?>
+
 </body>
 
 </html>

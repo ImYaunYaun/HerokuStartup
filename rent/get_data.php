@@ -16,7 +16,35 @@ function Query($offset, $limit, $WebName, $search, $moneyS, $moneyE, $orderby, $
     }
 
     if (isset($moneyS) && $moneyS != "") {
-        $SqlWhere .= " AND `money` >= '{$moneyS}'";
+		switch($moneyS){
+			case "0 AND 5000":
+				$SqlWhere .= " AND `money` <= '5000'";
+			break;
+			case "10Thousand":
+				$SqlWhere.="AND (`money` BETWEEN '5000' AND '10000') ";	
+			break;
+			case "20Thousand":
+				$SqlWhere.="AND (`money` BETWEEN '10000' AND '20000') ";	
+			break;
+			case "30Thousand":
+				$SqlWhere.="AND (`money` BETWEEN '20000' AND '30000') ";	
+			break;
+			case "40Thousand":
+				$SqlWhere.="AND (`money` BETWEEN '30000' AND '40000') ";	
+			break;
+			case "50Thousand":
+				$SqlWhere.="AND (`money` BETWEEN '40000' AND '50000') ";	
+			break;
+			case "60Thousand":
+				$SqlWhere.="AND (`money` BETWEEN '50000' AND '60000') ";	
+			break;
+			case "70Thousand":
+				$SqlWhere .= " AND `money` >= '60000'";
+			break;
+			default:
+				$SqlWhere .= " AND `money` >= '{$moneyS}'";
+			break;
+		}
     }
 
     if (isset($moneyE) && $moneyE != "") {
@@ -52,15 +80,71 @@ function Query($offset, $limit, $WebName, $search, $moneyS, $moneyE, $orderby, $
 				$SqlWhere .= " AND `adress` Like '%{$town}%'";
 			break;	
 		}
-        $SqlWhere .= " AND `adress` Like '%{$town}%'";
+	}
+
+	if(isset($square) && $square!=""){
+		switch($square){
+			case "10坪以下":
+				$SqlWhere.="AND (`square_meters` <='10') ";	
+			break;
+			case "10-20坪":
+				$SqlWhere.="AND (`square_meters` BETWEEN '10' AND '20') ";	
+			break;
+			case "20-30坪":
+				$SqlWhere.="AND (`square_meters` BETWEEN '20' AND '30') ";	
+			break;
+			case "30-40坪":
+				$SqlWhere.="AND (`square_meters` BETWEEN '30' AND '40') ";	
+			break;
+			case "40-50坪":
+				$SqlWhere.="AND (`square_meters` BETWEEN '40' AND '50') ";	
+			break;
+			case "50坪以上":
+				$SqlWhere.="AND (`square_meters` >='50') ";	
+			break;
+		}
+	}
+
+	if(isset($orderby) && $orderby!=""){
+		switch($orderby){
+			case "房屋來源":
+				$orderby="house";
+			break;
+			case "刊登日期":
+				$orderby="date";
+			break;
+			case "房屋租金":
+				$orderby="money";
+			break;
+			default:
+				$orderby="house";
+			break;
+		}
+	}
+
+	if(isset($dict) && $dict!=""){
+		switch($dict){
+			case "由大到小":
+				$dict="DESC";
+			break;
+			case "由小到大":
+				$dict="ASC";
+			break;
+			default:
+				$dict="DESC";
+			break;
+		}
 	}
 	
-
 
 	$query = "SELECT * FROM `page_data` where (1=1) {$SqlWhere} ORDER BY `{$orderby}` {$dict} LIMIT {$limit} OFFSET {$offset}";
 	$data = mysqli_query($cralwer,$query);
 	$row = mysqli_fetch_assoc($data);
-	do{
+	$Rowcount=mysql_num_rows($data);
+	if($Rowcount=="0"){
+		echo "無資料!";
+	}else{
+		do{
 		$query_subscribe = "SELECT COUNT(*) countSubscribe FROM `subscription` WHERE `userid` = '{$userid}' AND `Link` = '{$row['Link']}'";
 		$subscribeCount = mysqli_query($cralwer,$query_subscribe);
 		$row_subscribeCount=mysqli_fetch_assoc($subscribeCount);
@@ -113,9 +197,8 @@ function Query($offset, $limit, $WebName, $search, $moneyS, $moneyE, $orderby, $
 					<table id="qDTable" class="table table-sm initialism table-borderless bg-white card">
 						<tr>
 							<td rowspan="4" width="30%" class="text-center align-middle"><img class="imageSize" src="' . $row['images'] . '"></td>
-							<th colspan="2" width="50%" class="houseName">' .$Is_Delete. $row['house'] . '</th>
-							<td rowspan="4" width="2%" class="text-center align-top"></td>
-							<td width="18%" class="text-center align-middle houseInfo">來自：' . $row['WebName'] . '</td>
+							<th colspan="2" width="55%" class="houseName">' .$Is_Delete. $row['house'] . '</th>
+							<td width="15%" class="text-center align-middle houseInfo">來自：' . $row['WebName'] . '</td>
 						</tr>
 	
 						<tr>
@@ -149,7 +232,7 @@ if (isset($_POST['offset']) and isset($_POST['limit'])) {
 
 function Favorate($Link, $userid)
 {
-	header('Access-Control-Allow_Origin: *');
+	// header('Access-Control-Allow_Origin: *');
     require_once('Connections/cralwer.php');
     mysqli_select_db($cralwer,$database_cralwer);
 
@@ -168,7 +251,7 @@ function Favorate($Link, $userid)
 }
 
 function register($UserName, $UserAccount, $Image, $UserPwd){
-	header('Access-Control-Allow_Origin: *');
+	// header('Access-Control-Allow_Origin: *');
 	require_once('Connections/cralwer.php');
     mysqli_select_db($cralwer,$database_cralwer);
 	$query="SELECT * FROM `user` where (1=1) AND `account`='{$UserAccount}'";
@@ -211,7 +294,7 @@ function Login($myaccount, $mypassword){
 	// 	}
 
 	// 	$MM_fldUserAuthorization = "";
-	// 	$MM_redirectLoginSuccess = "home.php";
+	// 	$MM_redirectLoginSuccess = "index.php";
 	// 	$MM_redirectLoginFailed = "login.php?check=err";
 	// 	$MM_redirecttoReferrer = false;
 	// 	mysql_select_db($database_cralwer, $cralwer);
