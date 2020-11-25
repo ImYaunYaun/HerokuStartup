@@ -143,7 +143,7 @@ function Query($offset, $limit, $WebName, $search, $moneyS, $moneyE, $orderby, $
 	$query = "SELECT * FROM `page_data` where (1=1) {$SqlWhere} ORDER BY `{$orderby}` {$dict} LIMIT {$limit} OFFSET {$offset}";
 	$data = mysqli_query($cralwer,$query);
 	$row = mysqli_fetch_assoc($data);
-	$Rowcount=mysql_num_rows($data);
+	$Rowcount=mysqli_num_rows($data);
 	if($Rowcount=="0"){
 		echo "無資料!";
 	}else{
