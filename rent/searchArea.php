@@ -254,8 +254,9 @@ $totalRows_Login = mysqli_num_rows($Login);
 
                                         <td>
                                             <select name="orderby" class="form-control">
-                                                <option value="<?php echo isset($_POST['orderby']) ? $_POST['orderby'] : "house"; ?>" selected><?php echo isset($_POST['orderby']) ? $_POST['orderby'] : "house"; ?></option>
-                                                <option value="房屋來源">房屋來源</option>
+                                                <option value="<?php echo isset($_POST['orderby']) ? $_POST['orderby'] : "house"; ?>" selected><?php echo isset($_POST['orderby']) ? $_POST['orderby'] : "房屋名稱"; ?></option>
+                                                <option value="房屋名稱">房屋名稱</option>
+                                                <option value="房屋名稱">房屋來源</option>
                                                 <option value="房屋租金">房屋租金</option>
                                                 <option value="刊登時間">刊登時間</option>
                                             </select>
@@ -263,7 +264,7 @@ $totalRows_Login = mysqli_num_rows($Login);
 
                                         <td>
                                             <select name="dict" class="form-control">
-                                                <option value="<?php echo isset($_POST['dict']) ? $_POST['dict'] : "ASC"; ?>" selected><?php echo isset($_POST['dict']) ? $_POST['dict'] : "ASC"; ?></option>
+                                                <option value="<?php echo isset($_POST['dict']) ? $_POST['dict'] : "ASC"; ?>" selected><?php echo isset($_POST['dict']) ? $_POST['dict'] : "由小到大"; ?></option>
                                                 <option value="由小到大">由小到大</option>
                                                 <option value="由大到小">由大到小</option>
                                             </select>

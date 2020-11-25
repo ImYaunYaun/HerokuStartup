@@ -108,6 +108,9 @@ function Query($offset, $limit, $WebName, $search, $moneyS, $moneyE, $orderby, $
 	if(isset($orderby) && $orderby!=""){
 		switch($orderby){
 			case "房屋來源":
+				$orderby="WebName";
+			break;
+			case "房屋名稱":
 				$orderby="house";
 			break;
 			case "刊登日期":
@@ -145,85 +148,86 @@ function Query($offset, $limit, $WebName, $search, $moneyS, $moneyE, $orderby, $
 		echo "無資料!";
 	}else{
 		do{
-		$query_subscribe = "SELECT COUNT(*) countSubscribe FROM `subscription` WHERE `userid` = '{$userid}' AND `Link` = '{$row['Link']}'";
-		$subscribeCount = mysqli_query($cralwer,$query_subscribe);
-		$row_subscribeCount=mysqli_fetch_assoc($subscribeCount);
-		$selectedFav = '<img class="favorite" id="' . $row["Link"] . '" src="images/selectedFav.png" width="20px" onClick="Favorate(this,' . $userid . ')">';
-		$favorite = '<img class="favorite" id="' . $row["Link"] . '" src="images/Favorite.png" width="20px" onClick="Favorate(this,' . $userid . ')">';
-		$mystr = $row_subscribeCount['countSubscribe']>="1" ? $selectedFav : $favorite;
-		$Is_Delete=$row['Is_Delete']=='Y'?"<span class=\"badge badge-danger\" >已下架</span>":"";
-		if (isset($userid) AND $userid!="") {
-            echo '
-			<div class="row justify-content-center">
-				<div class="col-12 col-sm-10 col-md-8 col-lg-6">
-					<table id="qDTable" class="table table-sm initialism table-borderless bg-white card">
-						<tr>
-							<td rowspan="4" width="30%" class="text-center align-middle">
-								<img class="imageSize" src="' . $row['images'] . '">	
-							</td>
-							<th colspan="2" width="50%" class="houseName">' .$Is_Delete. $row['house'] . '</th>
-							<td rowspan="4" width="2%" class="text-center align-top">'.
-							// ($subscribeCount>=1 ? '<img class="favorite" id="' . $row["Link"] . '" src="images/selectedFav.png" width="20px" onClick="Favorate(this,' . $userid . ')">' : '<img class="favorite" id="' . $row["Link"] . '" src="images/favorite.png" width="20px" onClick="Favorate(this,' . $userid . ')">')
-							$mystr
-							.'</td>
-							<td width="18%" class="text-center align-middle houseInfo">來自：' . $row['WebName'] . '</td>
-						</tr>
-	
-						<tr>
-							<td colspan="2">' . $row['adress'] . '</td>
-							<td rowspan="2" id="Price" class="text-center align-middle housePrice">' . number_format($row['money']) . '</td>
-						</tr>
-	
-						<tr>
-							<td class="align-middle houseInfo">坪數：' . $row['square_meters'] . '</td>
-							<td class="align-middle houseInfo">形式：' . $row['pattern'] . '</td>
-						</tr>
-	
-						<tr>
-							<td class="align-middle houseInfo">樓層：' . $row['floor'] . '</td>
-							<td class="align-middle houseInfo">類型：' . $row['house_type'] . '</td>
-							<td>
-								<a class="btn btn-block btn-sm btnGo" target="_blank" href="' . $row['Link'] . '">查看更多</a>
-							</td>
-						</tr>
-					</table>
+			$query_subscribe = "SELECT COUNT(*) countSubscribe FROM `subscription` WHERE `userid` = '{$userid}' AND `Link` = '{$row['Link']}'";
+			$subscribeCount = mysqli_query($cralwer,$query_subscribe);
+			$row_subscribeCount=mysqli_fetch_assoc($subscribeCount);
+			$selectedFav = '<img class="favorite" id="' . $row["Link"] . '" src="images/selectedFav.png" width="20px" onClick="Favorate(this,' . $userid . ')">';
+			$favorite = '<img class="favorite" id="' . $row["Link"] . '" src="images/Favorite.png" width="20px" onClick="Favorate(this,' . $userid . ')">';
+			$mystr = $row_subscribeCount['countSubscribe']>="1" ? $selectedFav : $favorite;
+			$Is_Delete=$row['Is_Delete']=='Y'?"<span class=\"badge badge-danger\" >已下架</span>":"";
+			if (isset($userid) AND $userid!="") {
+				echo '
+				<div class="row justify-content-center">
+					<div class="col-12 col-sm-10 col-md-8 col-lg-6">
+						<table id="qDTable" class="table table-sm initialism table-borderless bg-white card">
+							<tr>
+								<td rowspan="4" width="30%" class="text-center align-middle">
+									<img class="imageSize" src="' . $row['images'] . '">	
+								</td>
+								<th colspan="2" width="50%" class="houseName">' .$Is_Delete. $row['house'] . '</th>
+								<td rowspan="4" width="2%" class="text-center align-top">'.
+								// ($subscribeCount>=1 ? '<img class="favorite" id="' . $row["Link"] . '" src="images/selectedFav.png" width="20px" onClick="Favorate(this,' . $userid . ')">' : '<img class="favorite" id="' . $row["Link"] . '" src="images/favorite.png" width="20px" onClick="Favorate(this,' . $userid . ')">')
+								$mystr
+								.'</td>
+								<td width="18%" class="text-center align-middle houseInfo">來自：' . $row['WebName'] . '</td>
+							</tr>
+		
+							<tr>
+								<td colspan="2">' . $row['adress'] . '</td>
+								<td rowspan="2" id="Price" class="text-center align-middle housePrice">' . number_format($row['money']) . '</td>
+							</tr>
+		
+							<tr>
+								<td class="align-middle houseInfo">坪數：' . $row['square_meters'] . '</td>
+								<td class="align-middle houseInfo">形式：' . $row['pattern'] . '</td>
+							</tr>
+		
+							<tr>
+								<td class="align-middle houseInfo">樓層：' . $row['floor'] . '</td>
+								<td class="align-middle houseInfo">類型：' . $row['house_type'] . '</td>
+								<td>
+									<a class="btn btn-block btn-sm btnGo" target="_blank" href="' . $row['Link'] . '">查看更多</a>
+								</td>
+							</tr>
+						</table>
+					</div>
 				</div>
-			</div>
-		';
-        } else {
-            echo '
-			<div class="row justify-content-center">
-				<div class="col-12 col-sm-10 col-md-8 col-lg-6">
-					<table id="qDTable" class="table table-sm initialism table-borderless bg-white card">
-						<tr>
-							<td rowspan="4" width="30%" class="text-center align-middle"><img class="imageSize" src="' . $row['images'] . '"></td>
-							<th colspan="2" width="55%" class="houseName">' .$Is_Delete. $row['house'] . '</th>
-							<td width="15%" class="text-center align-middle houseInfo">來自：' . $row['WebName'] . '</td>
-						</tr>
-	
-						<tr>
-							<td colspan="2">' . $row['adress'] . '</td>
-							<td rowspan="2" id="Price" class="text-center align-middle housePrice">' . number_format($row['money']) . '</td>
-						</tr>
-	
-						<tr>
-							<td class="align-middle houseInfo">坪數：' . $row['square_meters'] . '</td>
-							<td class="align-middle houseInfo">形式：' . $row['pattern'] . '</td>
-						</tr>
-	
-						<tr>
-							<td class="align-middle houseInfo">樓層：' . $row['floor'] . '</td>
-							<td class="align-middle houseInfo">類型：' . $row['house_type'] . '</td>
-							<td>
-								<a class="btn btn-block btn-sm btnGo" target="_blank" href="' . $row['Link'] . '">查看更多</a>
-							</td>
-						</tr>
-					</table>
+			';
+			} else {
+				echo '
+				<div class="row justify-content-center">
+					<div class="col-12 col-sm-10 col-md-8 col-lg-6">
+						<table id="qDTable" class="table table-sm initialism table-borderless bg-white card">
+							<tr>
+								<td rowspan="4" width="30%" class="text-center align-middle"><img class="imageSize" src="' . $row['images'] . '"></td>
+								<th colspan="2" width="55%" class="houseName">' .$Is_Delete. $row['house'] . '</th>
+								<td width="15%" class="text-center align-middle houseInfo">來自：' . $row['WebName'] . '</td>
+							</tr>
+		
+							<tr>
+								<td colspan="2">' . $row['adress'] . '</td>
+								<td rowspan="2" id="Price" class="text-center align-middle housePrice">' . number_format($row['money']) . '</td>
+							</tr>
+		
+							<tr>
+								<td class="align-middle houseInfo">坪數：' . $row['square_meters'] . '</td>
+								<td class="align-middle houseInfo">形式：' . $row['pattern'] . '</td>
+							</tr>
+		
+							<tr>
+								<td class="align-middle houseInfo">樓層：' . $row['floor'] . '</td>
+								<td class="align-middle houseInfo">類型：' . $row['house_type'] . '</td>
+								<td>
+									<a class="btn btn-block btn-sm btnGo" target="_blank" href="' . $row['Link'] . '">查看更多</a>
+								</td>
+							</tr>
+						</table>
+					</div>
 				</div>
-			</div>
-		';
-        }
-    }while($row=mysqli_fetch_assoc($data));
+			';
+			}
+		}while($row=mysqli_fetch_assoc($data));
+	}
 }
 if (isset($_POST['offset']) and isset($_POST['limit'])) {
     /*設定參數*/
