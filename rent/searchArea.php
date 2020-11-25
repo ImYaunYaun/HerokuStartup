@@ -426,7 +426,7 @@ $totalRows_Login = mysqli_num_rows($Login);
     }
 </script>
 <?php
-if (isset($_POST['home']) && $_POST['home'] = "home" || $_GET['home']=="home") {
+if ((isset($_POST['home']) && $_POST['home'] = "home") || $_GET['home']=="home") {
     echo "<script>
         $('#submit').trigger('click');
         </script>";
