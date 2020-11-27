@@ -2,13 +2,14 @@
 <?php
 function Query($offset, $limit, $WebName, $search, $moneyS, $moneyE, $orderby, $dict, $userid, $city, $town)
 {
-	header('Access-Control-Allow_Origin: *');
+	//header('Access-Control-Allow_Origin: *');
     require_once('Connections/cralwer.php');
 	mysqli_select_db($cralwer , $database_cralwer);
 
-    $SqlWhere = "";
+	$SqlWhere = "";
+	
     if (isset($WebName) && $WebName != "") {
-        $SqlWhere .= " AND `WebName` = '{$WebName}'";
+        $SqlWhere .= " AND `WebName` = '{$WebName}' ";
     }
 
     if (isset($search) && $search != "") {
@@ -140,7 +141,7 @@ function Query($offset, $limit, $WebName, $search, $moneyS, $moneyE, $orderby, $
 	}
 	
 
-	$query = "SELECT * FROM `page_data` where (1=1) {$SqlWhere} ORDER BY `{$orderby}` {$dict} LIMIT {$limit} OFFSET {$offset}";
+	$query = "SELECT * FROM `page_data` WHERE (1=1) {$SqlWhere} ORDER BY `{$orderby}` {$dict} LIMIT {$limit} OFFSET {$offset}";
 	$data = mysqli_query($cralwer,$query);
 	$row = mysqli_fetch_assoc($data);
 	$Rowcount=mysqli_num_rows($data);

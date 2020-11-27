@@ -256,7 +256,7 @@ $totalRows_Login = mysqli_num_rows($Login);
                                             <select name="orderby" class="form-control">
                                                 <option value="<?php echo isset($_POST['orderby']) ? $_POST['orderby'] : "房屋名稱"; ?>" selected><?php echo isset($_POST['orderby']) ? $_POST['orderby'] : "房屋名稱"; ?></option>
                                                 <option value="房屋名稱">房屋名稱</option>
-                                                <option value="房屋名稱">房屋來源</option>
+                                                <option value="房屋來源">房屋來源</option>
                                                 <option value="房屋租金">房屋租金</option>
                                                 <option value="刊登時間">刊登時間</option>
                                             </select>

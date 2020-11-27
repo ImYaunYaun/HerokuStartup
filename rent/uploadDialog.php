@@ -1,6 +1,6 @@
 <?php
 
-$url = parse_url(getenv("CLEARDB_DATABASE_URL"));
+$url = parse_url(getenv("CLEARDB_CYAN_URL"));
 
 $hostname_cralwer  = $url["host"];
 $username_cralwer = $url["user"];
