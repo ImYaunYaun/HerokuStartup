@@ -157,9 +157,9 @@ $totalRows_Login = mysqli_num_rows($Login);
                         <img src="images/BrownIcon.png" alt="logo" class="HomeIcon"> | 找到最適合您的家
                     </section>
                     <div class="form-group">
-                        <input type="text" class="form-control inputSearch" name="search" placeholder="輸入地段、路名、商圈" required>
+                        <input type="text" class="form-control inputSearch" name="qtxt" placeholder="輸入地段、路名、商圈" required>
                         <input type="hidden" name="home" value="home">
-                        <select class="form-control" style="margin-bottom: 10px;">
+                        <select name="moneyS" class="form-control" style="margin-bottom: 10px;">
                             <option value="" disabled selected>選擇價格區間</option>
                             <option value="0 AND 5000">5000元以下</option>
                             <option value="10Thousand">5000-10000元</option>
@@ -171,7 +171,7 @@ $totalRows_Login = mysqli_num_rows($Login);
                             <option value="70Thousand">60000元以上</option>
                         </select>
 
-                        <select class="form-control">
+                        <select name="square" class="form-control">
                             <option value="" disabled selected>選擇坪數區間</option>
                             <option value="0 AND 10">10坪以下</option>
                             <option value="20SquareMeter">10-20坪</option>
