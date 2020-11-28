@@ -5,6 +5,7 @@ function Query($offset, $limit, $WebName, $search, $moneyS, $moneyE, $orderby, $
 	//header('Access-Control-Allow_Origin: *');
     require_once('Connections/cralwer.php');
 	mysqli_select_db($cralwer , $database_cralwer);
+	mysqli_query($cralwer,"SET CHARACTER SET UTF8");
 
 	$SqlWhere = "";
 	
