@@ -75,6 +75,7 @@ $totalRows_Login = mysqli_num_rows($Login);
 // $row_Login = mysql_fetch_assoc($Login);
 // $totalRows_Login = mysql_num_rows($Login);
 
+
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -136,8 +137,8 @@ $totalRows_Login = mysqli_num_rows($Login);
 
                 <?php if ($totalRows_Login > 0) { // 登入後顯示 
                 ?>
-                    <li class="nav-item active"><a class="nav-link" href="userPage.php"><b>嗨！<?php include 'encrypt.php';
-                                                                                                echo decryptthis($row_Login['name'], $key); ?></b></a></li>
+                    <li class="nav-item active"><a class="nav-link" href="userPage.php"><b>嗨！
+                    <?php include 'encrypt.php';echo decryptthis($row_Login['name'], $key); ?></b></a></li>
                     <li class="nav-item"><a class="nav-link" href="searchArea.php">搜尋列表</a></li>
                     <li class="nav-item"><a class="nav-link" href="<?php echo $logoutAction ?>">登出</a></li>
                 <?php } // Show if recordset not empty 
@@ -159,7 +160,7 @@ $totalRows_Login = mysqli_num_rows($Login);
                     <div class="form-group">
                         <input type="text" class="form-control inputSearch" name="qtxt" placeholder="輸入地段、路名、商圈" required>
                         <input type="hidden" name="home" value="home">
-                        <select name="moneyS" class="form-control" style="margin-bottom: 10px;">
+                        <select name="moneySE" class="form-control" style="margin-bottom: 10px;">
                             <option value="" disabled selected>選擇價格區間</option>
                             <option value="0 AND 5000">5000元以下</option>
                             <option value="10Thousand">5000-10000元</option>
@@ -173,12 +174,12 @@ $totalRows_Login = mysqli_num_rows($Login);
 
                         <select name="square" class="form-control">
                             <option value="" disabled selected>選擇坪數區間</option>
-                            <option value="0 AND 10">10坪以下</option>
-                            <option value="20SquareMeter">10-20坪</option>
-                            <option value="30SquareMeter">20-30坪</option>
-                            <option value="40SquareMeter">30-40坪</option>
-                            <option value="50SquareMeter">40-50坪</option>
-                            <option value="60SquareMeter">50坪以上</option>
+                            <option value="10坪以下">10坪以下</option>
+                            <option value="10-20坪">10-20坪</option>
+                            <option value="20-30坪">20-30坪</option>
+                            <option value="30-40坪">30-40坪</option>
+                            <option value="40-50坪">40-50坪</option>
+                            <option value="50坪以上">50坪以上</option>
                         </select>
                     </div>
                     <button type="submit" class="btn btn-block btnGo">找房子！</button>

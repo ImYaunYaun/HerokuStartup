@@ -66,6 +66,8 @@ $query_Login = sprintf("SELECT * FROM `user` WHERE account = %s", GetSQLValueStr
 $Login = mysqli_query($cralwer, $query_Login);
 $row_Login = mysqli_fetch_assoc($Login);
 $totalRows_Login = mysqli_num_rows($Login);
+
+
 ?>
 <!DOCTYPE html>
 <html>
@@ -136,8 +138,8 @@ $totalRows_Login = mysqli_num_rows($Login);
 
                     <?php if ($totalRows_Login > 0) { // 登入後顯示 
                     ?>
-                        <li class="nav-item active"><a class="nav-link" href="userPage.php"><b>嗨！<?php include 'encrypt.php';
-                                                                                                    echo decryptthis($row_Login['name'], $key); ?></b></a></li>
+                        <li class="nav-item active"><a class="nav-link" href="userPage.php"><b>嗨！
+                        <?php include 'encrypt.php';echo decryptthis($row_Login['name'], $key); ?></b></a></li>
                         <li class="nav-item"><a class="nav-link" href="<?php echo $logoutAction ?>">登出</a></li>
                     <?php } // Show if recordset not empty 
                     ?>
@@ -328,14 +330,15 @@ $totalRows_Login = mysqli_num_rows($Login);
     var city = '<?php echo $_POST['city']; ?>';
     var town = '<?php echo $_POST['town']; ?>';
     var square = '<?php echo $_POST['square']; ?>';
+    var moneySE ='<?php echo isset($_POST['moneySE']) ? $_POST['moneySE'] : "";?>';
     $(document).ready(function() {
         var flag = 0;
         $.ajax({
             type: "POST",
             url: "get_data.php",
             data: {
-                'offset': 0,
-                'limit': 10,
+                'offset': '0',
+                'limit': '10',
                 'WebName': WebName,
                 'search': qtxt,
                 'moneyS': moneyS,
@@ -345,7 +348,8 @@ $totalRows_Login = mysqli_num_rows($Login);
                 'userid': userid,
                 'city': city,
                 'town': town,
-                'square': square
+                'square': square,
+                'moneySE':moneySE
             },
             contentType: "application/x-www-form-urlencoded; charset=utf-8",
             success: function(data) {
@@ -380,7 +384,8 @@ $totalRows_Login = mysqli_num_rows($Login);
                         'userid': userid,
                         'city': city,
                         'town': town,
-                        'square': square
+                        'square': square,
+                        'moneySE':moneySE
                     },
                     contentType: "application/x-www-form-urlencoded; charset=utf-8",
                     success: function(data) {

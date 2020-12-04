@@ -1,8 +1,8 @@
 <script src="src/get_data.js"></script>
 <?php
-function Query($offset, $limit, $WebName, $search, $moneyS, $moneyE, $orderby, $dict, $userid, $city, $town)
+function Query($offset, $limit, $WebName, $search, $moneyS, $moneyE, $orderby, $dict, $userid, $city, $town, $square, $moneySE)
 {
-	//header('Access-Control-Allow_Origin: *');
+	header('Access-Control-Allow_Origin: *');
     require_once('Connections/cralwer.php');
 	mysqli_select_db($cralwer , $database_cralwer);
 	mysqli_query($cralwer,"SET CHARACTER SET UTF8");
@@ -10,17 +10,17 @@ function Query($offset, $limit, $WebName, $search, $moneyS, $moneyE, $orderby, $
 	$SqlWhere = "";
 	
     if (isset($WebName) && $WebName != "") {
-        $SqlWhere .= " AND `WebName` = '{$WebName}' ";
+        $SqlWhere .= " AND `WebName`='{$WebName}' ";
     }
 
     if (isset($search) && $search != "") {
-        $SqlWhere .= " AND (`house` like '%{$search}%' OR `adress` like '%{$search}%')";
+        $SqlWhere .= " AND (`house` like '%{$search}%' OR `adress` like '%{$search}%') ";
     }
 
-    if (isset($moneyS) && $moneyS != "") {
-		switch($moneyS){
+    if (isset($moneySE) && $moneySE != "") {
+		switch($moneySE){
 			case "0 AND 5000":
-				$SqlWhere .= " AND `money` <= '5000'";
+				$SqlWhere .= " AND `money` <= '5000' ";
 			break;
 			case "10Thousand":
 				$SqlWhere.="AND (`money` BETWEEN '5000' AND '10000') ";	
@@ -41,34 +41,35 @@ function Query($offset, $limit, $WebName, $search, $moneyS, $moneyE, $orderby, $
 				$SqlWhere.="AND (`money` BETWEEN '50000' AND '60000') ";	
 			break;
 			case "70Thousand":
-				$SqlWhere .= " AND `money` >= '60000'";
-			break;
-			default:
-				$SqlWhere .= " AND `money` >= '{$moneyS}'";
+				$SqlWhere .= " AND `money` >= '60000' ";
 			break;
 		}
     }
 
+    if (isset($moneyS) && $moneyS != "") {
+        $SqlWhere .= " AND `money` >= '{$moneyS}' ";
+	}
+	
     if (isset($moneyE) && $moneyE != "") {
-        $SqlWhere .= " AND `money` <= '{$moneyE}'";
+        $SqlWhere .= " AND `money` <= '{$moneyE}' ";
     }
 
 	if (isset($city) && $city != "") {
 		switch ($city){
 			case '臺北市':
-				$SqlWhere .= " AND (`adress` Like '臺北%' OR `adress` Like '台北%')";
+				$SqlWhere .= " AND (`adress` Like '臺北%' OR `adress` Like '台北%') ";
 			break;
 			case '臺中市':
-				$SqlWhere .= " AND (`adress` Like '臺中%' OR `adress` Like '台中%')";
+				$SqlWhere .= " AND (`adress` Like '臺中%' OR `adress` Like '台中%') ";
 			break;
 			case '臺南市':
-				$SqlWhere .= " AND (`adress` Like '臺南}%' OR `adress` Like '台南%')";
+				$SqlWhere .= " AND (`adress` Like '臺南}%' OR `adress` Like '台南%') ";
 			break;
 			case '臺東縣':
-				$SqlWhere .= " AND (`adress` Like '臺東%' OR `adress` Like '台東%')";
+				$SqlWhere .= " AND (`adress` Like '臺東%' OR `adress` Like '台東%') ";
 			break;
 			default:
-				$SqlWhere .= " AND `adress` Like '{$city}%'";
+				$SqlWhere .= " AND `adress` Like '{$city}%' ";
 			break;
 		}
 	}
@@ -76,10 +77,10 @@ function Query($offset, $limit, $WebName, $search, $moneyS, $moneyE, $orderby, $
 	if (isset($town) && $town != "") {
 		switch($town){
 			case '臺東市':
-				$SqlWhere .= " AND (`adress` Like '%臺東市%' or `adress` Like '%台東市%')";
+				$SqlWhere .= " AND (`adress` Like '%臺東市%' or `adress` Like '%台東市%') ";
 			break;
 			default:
-				$SqlWhere .= " AND `adress` Like '%{$town}%'";
+				$SqlWhere .= " AND `adress` Like '%{$town}%' ";
 			break;	
 		}
 	}
@@ -87,22 +88,22 @@ function Query($offset, $limit, $WebName, $search, $moneyS, $moneyE, $orderby, $
 	if(isset($square) && $square!=""){
 		switch($square){
 			case "10坪以下":
-				$SqlWhere.="AND (`square_meters` <='10') ";	
+				$SqlWhere.=" AND (`square_meters` <= 10 ) ";	
 			break;
 			case "10-20坪":
-				$SqlWhere.="AND (`square_meters` BETWEEN '10' AND '20') ";	
+				$SqlWhere.=" AND (`square_meters` BETWEEN 10 AND 20) ";	
 			break;
 			case "20-30坪":
-				$SqlWhere.="AND (`square_meters` BETWEEN '20' AND '30') ";	
+				$SqlWhere.=" AND (`square_meters` BETWEEN 20 AND 30) ";	
 			break;
 			case "30-40坪":
-				$SqlWhere.="AND (`square_meters` BETWEEN '30' AND '40') ";	
+				$SqlWhere.=" AND (`square_meters` BETWEEN 30 AND 40) ";	
 			break;
 			case "40-50坪":
-				$SqlWhere.="AND (`square_meters` BETWEEN '40' AND '50') ";	
+				$SqlWhere.=" AND (`square_meters` BETWEEN 40 AND 50) ";	
 			break;
 			case "50坪以上":
-				$SqlWhere.="AND (`square_meters` >='50') ";	
+				$SqlWhere.=" AND (`square_meters` >=50) ";	
 			break;
 		}
 	}
@@ -143,6 +144,7 @@ function Query($offset, $limit, $WebName, $search, $moneyS, $moneyE, $orderby, $
 	
 
 	$query = "SELECT * FROM `page_data` WHERE (1=1) {$SqlWhere} ORDER BY `{$orderby}` {$dict} LIMIT {$limit} OFFSET {$offset}";
+
 	$data = mysqli_query($cralwer,$query);
 	$row = mysqli_fetch_assoc($data);
 	$Rowcount=mysqli_num_rows($data);
@@ -233,7 +235,7 @@ function Query($offset, $limit, $WebName, $search, $moneyS, $moneyE, $orderby, $
 }
 if (isset($_POST['offset']) and isset($_POST['limit'])) {
     /*設定參數*/
-    Query($_POST['offset'], $_POST['limit'], $_POST['WebName'], $_POST['search'], $_POST['moneyS'], $_POST['moneyE'], $_POST['orderby'], $_POST['dict'], $_POST['userid'],$_POST['city'],$_POST['town']);
+    Query($_POST['offset'], $_POST['limit'], $_POST['WebName'], $_POST['search'], $_POST['moneyS'], $_POST['moneyE'], $_POST['orderby'], $_POST['dict'], $_POST['userid'],$_POST['city'],$_POST['town'],$_POST['square'],$_POST['moneySE']);
 }
 
 function Favorate($Link, $userid)
