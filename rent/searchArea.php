@@ -199,7 +199,71 @@ $totalRows_Login = mysqli_num_rows($Login);
                                     <tr>
                                         <td>
                                             <select name="moneyS" class="form-control">
-                                                <option value="<?php echo isset($_POST['moneyS']) ? $_POST['moneyS'] : ""; ?>" selected><?php echo isset($_POST['moneyS']) && $_POST['moneyS'] != "" ? $_POST['moneyS'] : "不限"; ?></option>
+                                                <option value="<?php
+                                                if(isset($_POST['moneySE']) && $_POST['moneySE']!=""){
+                                                    switch($_POST['moneySE']){
+                                                        case "0 AND 5000":
+                                                            echo "0";
+                                                        break;
+                                                        case "10Thousand":
+                                                            echo "5000";
+                                                        break;
+                                                        case "20Thousand":
+                                                            echo "10000";	
+                                                        break;
+                                                        case "30Thousand":
+                                                            echo "20000";	
+                                                        break;
+                                                        case "40Thousand":
+                                                            echo "30000";
+                                                        break;
+                                                        case "50Thousand":
+                                                            echo "40000";	
+                                                        break;
+                                                        case "60Thousand":
+                                                            echo "50000";
+                                                        break;
+                                                        case "70Thousand":
+                                                            echo "60000";
+                                                        break;
+                                                    }
+                                                }else{
+                                                 echo isset($_POST['moneyS']) ? $_POST['moneyS'] : ""; 
+                                                }
+                                                 ?>" selected>
+                                                <?php
+                                                    if(isset($_POST['moneySE']) && $_POST['moneySE']!=""){
+                                                        switch($_POST['moneySE']){
+                                                            case "0 AND 5000":
+                                                                echo "0";
+                                                            break;
+                                                            case "10Thousand":
+                                                                echo "5000";
+                                                            break;
+                                                            case "20Thousand":
+                                                                echo "10000";	
+                                                            break;
+                                                            case "30Thousand":
+                                                                echo "20000";	
+                                                            break;
+                                                            case "40Thousand":
+                                                                echo "30000";
+                                                            break;
+                                                            case "50Thousand":
+                                                                echo "40000";	
+                                                            break;
+                                                            case "60Thousand":
+                                                                echo "50000";
+                                                            break;
+                                                            case "70Thousand":
+                                                                echo "60000";
+                                                            break;
+                                                        }
+                                                    }else{ 
+                                                        echo isset($_POST['moneyS']) && $_POST['moneyS'] != "" ? $_POST['moneyS'] : "不限"; 
+                                                    }
+                                                ?>
+                                                </option>
                                                 <option value="">不限</option>
                                                 <option value="5000">5000</option>
                                                 <option value="10000">10000</option>
@@ -217,7 +281,71 @@ $totalRows_Login = mysqli_num_rows($Login);
 
                                         <td>
                                             <select name="moneyE" class="form-control">
-                                                <option value="<?php echo isset($_POST['moneyE']) ? $_POST['moneyE'] : ""; ?>" selected><?php echo isset($_POST['moneyE']) && $_POST['moneyE'] != "" ? $_POST['moneyE'] : "不限"; ?></option>
+                                                <option value="<?php 
+                                                if(isset($_POST['moneySE']) && $_POST['moneySE']!=""){
+                                                    switch($_POST['moneySE']){
+                                                        case "0 AND 5000":
+                                                            echo "5000";
+                                                        break;
+                                                        case "10Thousand":
+                                                            echo "10000";
+                                                        break;
+                                                        case "20Thousand":
+                                                            echo "20000";	
+                                                        break;
+                                                        case "30Thousand":
+                                                            echo "30000";	
+                                                        break;
+                                                        case "40Thousand":
+                                                            echo "40000";
+                                                        break;
+                                                        case "50Thousand":
+                                                            echo "50000";	
+                                                        break;
+                                                        case "60Thousand":
+                                                            echo "60000";
+                                                        break;
+                                                        case "70Thousand":
+                                                            echo "";
+                                                        break;
+                                                    }
+                                                }else{
+                                                    echo isset($_POST['moneyE']) ? $_POST['moneyE'] : ""; 
+                                                }
+                                                ?>" selected>
+                                                <?php 
+                                                    if(isset($_POST['moneySE']) && $_POST['moneySE']!=""){
+                                                        switch($_POST['moneySE']){
+                                                            case "0 AND 5000":
+                                                                echo "5000";
+                                                            break;
+                                                            case "10Thousand":
+                                                                echo "10000";
+                                                            break;
+                                                            case "20Thousand":
+                                                                echo "20000";	
+                                                            break;
+                                                            case "30Thousand":
+                                                                echo "30000";	
+                                                            break;
+                                                            case "40Thousand":
+                                                                echo "40000";
+                                                            break;
+                                                            case "50Thousand":
+                                                                echo "50000";	
+                                                            break;
+                                                            case "60Thousand":
+                                                                echo "60000";
+                                                            break;
+                                                            case "70Thousand":
+                                                                echo "不限";
+                                                            break;
+                                                        }
+                                                    }else{ 
+                                                        echo isset($_POST['moneyE']) && $_POST['moneyE'] != "" ? $_POST['moneyE'] : "不限";
+                                                    } 
+                                                ?>
+                                                </option>
                                                 <option value="">不限</option>
                                                 <option value="5000">5000</option>
                                                 <option value="10000">10000</option>
@@ -433,8 +561,8 @@ $totalRows_Login = mysqli_num_rows($Login);
 <?php
 if ((isset($_POST['home']) && $_POST['home'] = "home") || (isset($_GET['home']) && $_GET['home']="home")) {
     echo "<script>
-        $('#submit').trigger('click');
-        </script>";
+    $('#submit').trigger('click');
+    </script>";
 }
 ?>
 
