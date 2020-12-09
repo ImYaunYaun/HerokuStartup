@@ -169,7 +169,8 @@ function Query($offset, $limit, $WebName, $search, $moneyS, $moneyE, $orderby, $
 									<img class="imageSize" src="' . $row['images'] . '">	
 								</td>
 								<th colspan="2" width="50%" class="houseName">' .$Is_Delete. $row['house'] . '</th>
-								<td rowspan="4" width="2%" class="text-center align-top">'.
+								<td rowspan="4" width="2%" class="text-center align-top">
+								<img class="favorite" src="images/WhiteIcon.png" width="20px"></td>'.
 								// ($subscribeCount>=1 ? '<img class="favorite" id="' . $row["Link"] . '" src="images/selectedFav.png" width="20px" onClick="Favorate(this,' . $userid . ')">' : '<img class="favorite" id="' . $row["Link"] . '" src="images/favorite.png" width="20px" onClick="Favorate(this,' . $userid . ')">')
 								$mystr
 								.'</td>
